@@ -28,3 +28,4 @@ if: github.ref == 'refs/heads/main' && github.event_name == 'push'
 run: |
 sleep 5
 docker ps
+curl -s http://localhost:8080 | grep "Atualizado via pipeline"
