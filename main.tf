@@ -20,21 +20,21 @@ resource "docker_container" "web" {
     }
 }
 resource "docker_volume" "db_data" {
-name = "meu-projeto-db-data"
+    name = "meu-projeto-db-data"
 }
 resource "docker_image" "postgres" {
-name = "postgres:16"
+    name = "postgres:16"
 }
 resource "docker_container" "db" {
-name = "meu-container-db"
-image = docker_image.postgres.image_id
-env = ["POSTGRES_PASSWORD=senha123"]
-ports {
-internal = 5432
-external = 5432
-}
-volumes {
-volume_name = docker_volume.db_data.name
-container_path = "/var/lib/postgresql/data"
-}
+    name = "meu-container-db"
+    image = docker_image.postgres.image_id
+    env = ["POSTGRES_PASSWORD=senha123"]
+    ports {
+       internal = 5432
+       external = 5432
+    }
+    volumes {
+       volume_name = docker_volume.db_data.name
+       container_path = "/var/lib/postgresql/data"
+    }
 }
